@@ -28,7 +28,7 @@ export default async function Dashboard() {
       <span className="stat-ico">{icon}</span><div className="muted">{label}</div><strong><CountUp value={v} /></strong></div>))}</div>
     <section><div className="sec-head"><h2>Recent evaluations</h2><Link href="/events" className="link-sm">View all</Link></div>
       {recent.status !== "ok" ? <GlProblem status={recent.status} message={recent.status === "error" ? recent.message : undefined} />
-        : rows.length === 0 ? <div className="card muted">No evaluations yet. Run the first one from the swap screen.</div>
+        : rows.length === 0 ? <div className="card muted">No evaluations yet. Run the first one from the swap screen button.</div>
         : <div className="list">{rows.slice(0, 5).map((r) => { const a = assetBySymbol(r.record.asset);
             return <EventRow key={r.id} e={{ id: r.id, symbol: r.record.asset, slug: a?.slug ?? null, type: titleCase(r.record.result.eventType), severity: r.record.result.severity, detected: r.record.result.eventDetected, state: a ? evaluatePolicy(a.policy, r.record.result).state : null }} />; })}</div>}</section>
     <div className="card"><div className="kv"><span className="muted">GenLayer contract</span><span className="inline-actions"><span className="mono">{shortAddr(GENLAYER.contractAddress)}</span><CopyButton value={GENLAYER.contractAddress} label="Copy contract address" /></span></div>
